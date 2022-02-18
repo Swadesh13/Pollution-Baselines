@@ -35,7 +35,7 @@ class ConvLSTM1D(keras.Model):
         for layer in self.tconv_block:
             x = layer(x)
         x = self.dropout_layer(x)
-        x = tf.reshape(x, (x.shape[0], 1, *x.shape[1:]))
+        x = tf.reshape(x, (-1, 1, *(x.shape[1:])))
         if self.norm == "L2":
             x = tf.nn.l2_normalize(x, axis=[2,3])
         else:
@@ -75,7 +75,7 @@ class STGCN_ConvLSTM1D(keras.Model):
         for layer in self.tconv_block:
             x = layer(x)
         x = self.dropout_layer(x)
-        x = tf.reshape(x, (x.shape[0], 1, *x.shape[1:]))
+        x = tf.reshape(x, (-1, 1, *(x.shape[1:])))
         if self.norm == "L2":
             x = tf.nn.l2_normalize(x, axis=[2,3])
         else:
@@ -126,7 +126,7 @@ class Conv2D_ConvLSTM1D(keras.Model):
         for layer in self.tconv_block:
             x = layer(x)
         x = self.dropout_layer2(x)
-        x = tf.reshape(x, (x.shape[0], 1, *x.shape[1:]))
+        x = tf.reshape(x, (-1, 1, *(x.shape[1:])))
         if self.norm == "L2":
             x = tf.nn.l2_normalize(x, axis=[2,3])
         else:
