@@ -4,9 +4,9 @@ import tensorflow.keras as keras
 from .layers import SConvBlock, TConvBlock, STConvBlock, OutputLayer, FullyConLayer
 
 
-class ConvLSTM1D(keras.Model):
+class ConvLSTM1D_Custom(keras.Model):
     def __init__(self, input_shape, graph_kernel, n_his, Ks, Kt, blocks, act_func, norm, dropout, **kwargs):
-        super(ConvLSTM1D, self).__init__(name = "ConvLSTM1D" ,**kwargs)
+        super(ConvLSTM1D_Custom, self).__init__(name = "ConvLSTM1D_Custom" ,**kwargs)
         self.n_his = n_his
         self.n = input_shape[1]
         self.outc = input_shape[-1]

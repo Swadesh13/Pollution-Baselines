@@ -1,5 +1,5 @@
 from data_loader.data_utils import Dataset, gen_batch
-from model.model import ConvLSTM1D, STGCN_ConvLSTM1D, Conv2D_ConvLSTM1D
+from model.model import ConvLSTM1D_Custom, STGCN_ConvLSTM1D, Conv2D_ConvLSTM1D
 from utils.math_utils import custom_loss, MAPE, MAE, RMSE, Pearsonr, Rsquared
 from model.tester import model_inference, multi_pred
 
@@ -35,8 +35,8 @@ def model_train(inputs: Dataset, graph_kernel, blocks, args):
 
     if args.retrain:
         model = keras.models.load_model(args.model_path, custom_objects={'custom_loss': custom_loss})
-    elif args.model == 'ConvLSTM1D':
-        model = ConvLSTM1D(train_data.shape[1:], graph_kernel, n_his, Ks, Kt, blocks, "GLU", "layer", 0.1)
+    elif args.model == 'ConvLSTM1D_Custom':
+        model = ConvLSTM1D_Custom(train_data.shape[1:], graph_kernel, n_his, Ks, Kt, blocks, "GLU", "layer", 0.1)
     elif args.model == 'ConvLSTM':
         model = STGCN_ConvLSTM1D(train_data.shape[1:], graph_kernel, n_his, Ks, Kt, blocks, "GLU", "layer", 0.1)
     elif args.model == 'Conv2D':
